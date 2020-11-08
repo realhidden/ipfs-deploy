@@ -27,7 +27,10 @@ IPFS_DEPLOY_PINATA__SECRET_API_KEY`)
     const response = await new Promise(resolve => {
       recursive.readdirr(dir, (_err, _dirs, files) => {
         const data = new FormData()
-        const toStrip = path.dirname(dir).length
+        let toStrip = path.dirname(dir).length
+        if (files.length > 1) {
+          toStrip--
+        }
         files.forEach(file => {
           file = path.normalize(file)
           data.append('file', fs.createReadStream(file), {
