@@ -42,6 +42,9 @@ IPFS_DEPLOY_PINATA__SECRET_API_KEY`)
 
         const metadata = JSON.stringify({ name: tag })
         data.append('pinataMetadata', metadata)
+        data.append('pinataOptions',JSON.stringify({
+          wrapWithDirectory: false
+        }));
 
         axios
           .post(PIN_DIR_URL, data, {
